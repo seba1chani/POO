@@ -1,7 +1,7 @@
 
-import java.time.temporal.ChronoUnit;
 
 public class Paciente extends Persona{
+
     ObraSocial obraSocial;
     
     public Paciente(int dni,String nombre,char sexo,Fecha fecha){

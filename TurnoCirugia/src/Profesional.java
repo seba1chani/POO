@@ -1,4 +1,4 @@
-public class Profesional extends Persona {
+public class Profesional extends Persona{
     private int matricula;
 
 public Profesional(int dni,String nombre,char sexo,Fecha fecha,int matricula){
