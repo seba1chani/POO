@@ -1,8 +1,6 @@
-
-
 public class Paciente extends Persona{
 
-    ObraSocial obraSocial;
+    private ObraSocial obraSocial;
     
     public Paciente(int dni,String nombre,char sexo,Fecha fecha){
         super(dni, nombre, sexo,fecha);
