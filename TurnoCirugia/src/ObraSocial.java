@@ -8,4 +8,5 @@ public class ObraSocial {
         this.denominacion=denominacion;
         this.domicilio=domicilio;
     }
+    
 }

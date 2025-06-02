@@ -46,6 +46,10 @@ public class Fecha {
         return (int) ChronoUnit.YEARS.between(fecha,LocalDateTime.now());
     }
 
+    public int compareTo(Fecha otra){
+        return this.fecha.compareTo(otra.fecha);
+    }
+
     public String toString(){
         DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd/MM/yyyy HH/mm");
         return this.fecha.format(formato);

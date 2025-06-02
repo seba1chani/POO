@@ -12,5 +12,8 @@ public class Paciente extends Persona{
     public int edad(){
         return this.fecha.diferenciasAnios();
     }
+    public ObraSocial getObraSocial() {
+        return obraSocial;
+    }
 
 }
