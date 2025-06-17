@@ -11,10 +11,19 @@ public class CirculoMovible implements Movible{
         return centro.getX();
     }
     public int getY(){
-        return centro.getX();
+        return centro.getY();
     }
     public int getDiametro(){
         return radio*2;
+    }
+    public void setX(int x){
+        this.centro.setX(x);
+    }
+    public void setY(int y){
+        this.centro.setY(y);
+    }
+    public void setRadio(int radio){
+        this.radio= radio;
     }
 
     @Override

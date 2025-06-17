@@ -44,7 +44,7 @@ public class PuntoMovible implements Movible{
     }
     @Override
     public void moverAbajo() {
-        setY(getY()-(1*getYVelocidad()));
+        setY(getY()+(1*getYVelocidad()));
     }
     @Override
     public void moverIzquierda() {

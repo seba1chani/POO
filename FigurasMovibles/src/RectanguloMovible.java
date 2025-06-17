@@ -25,7 +25,7 @@ public class RectanguloMovible {
     }
     public void moverIzquierda(){
         supIzq.moverIzquierda();
-        supIzq.moverIzquierda();
+        infDer.moverIzquierda();
     }
 
     public int getX() {
@@ -41,5 +41,5 @@ public class RectanguloMovible {
         return Math.abs(supIzq.getY() - infDer.getY());
     }
 
-    
+
 }
