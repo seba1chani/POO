@@ -8,8 +8,8 @@ import javax.swing.*;
 public class FormasGUI extends JFrame {
     private JPanel panelFiguras, panelBotones,panelBtnFig,panelBtnMov,paneltxt;
     private JButton btnCirculo,btnRectangulo,btnArriba,btnAbajo,btnIzq,btnDer;
-    private JLabel eFigura,eX,eY,eDiametro;
-    private JTextField cirXTxtBox,cirYTxtBox,cirDiamTxtBox;
+    private JLabel eFigura,eX,eY,eDiametro,eX2,eY2;
+    private JTextField xTxtBox,yTxtBox,DiamTxtBox,x2TxtBox,y2TxtBox;
     private CirculoMovible circulo;
     private RectanguloMovible rectangulo;
     private enum FiguraActiva { CIRCULO, RECTANGULO }
@@ -19,9 +19,6 @@ public class FormasGUI extends JFrame {
         super(tit);
         setSize(600,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-       circulo= new CirculoMovible(0, 0, 1, 1, 40);
-       rectangulo= new RectanguloMovible(50, 50, 150, 120, 1, 1);
 
         armarPanelFiguras();
         armarPanelBotones();
@@ -34,19 +31,27 @@ public class FormasGUI extends JFrame {
     }
     private void armarPanelTxt(){
         this.paneltxt= new JPanel();
-        this.cirXTxtBox= new JTextField(8);
-        this.cirYTxtBox= new JTextField(8);
-        this.cirDiamTxtBox= new JTextField(8);
+        this.xTxtBox= new JTextField(8);
+        this.yTxtBox= new JTextField(8);
+        this.x2TxtBox= new JTextField(8);
+        this.y2TxtBox= new JTextField(8);
+        this.DiamTxtBox= new JTextField(8);
         this.eX= new JLabel("X");
         this.eY= new JLabel("Y");
+        this.eX2= new JLabel("X2");
+        this.eY2= new JLabel("Y2");
         this.eDiametro= new JLabel("Diametro");
-        this.paneltxt.setLayout(new GridLayout(3, 3));
+        this.paneltxt.setLayout(new GridLayout(5, 2));
         paneltxt.add(eX);
-        paneltxt.add(cirXTxtBox);
+        paneltxt.add(xTxtBox);
         paneltxt.add(eY);
-        paneltxt.add(this.cirYTxtBox);
+        paneltxt.add(this.yTxtBox);
+        paneltxt.add(eX2);
+        paneltxt.add(this.x2TxtBox);
+        paneltxt.add(eY2);
+        paneltxt.add(this.y2TxtBox);
         paneltxt.add(eDiametro);
-        paneltxt.add(this.cirDiamTxtBox);
+        paneltxt.add(this.DiamTxtBox);
     }
 
     private void armarPanelFiguras(){
@@ -121,17 +126,38 @@ public class FormasGUI extends JFrame {
     private class OyenteCirculo implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent event) {
-            figuraActiva= figuraActiva.CIRCULO;
-            eFigura.setIcon(crearIconoCiruculo(circulo.getX(), circulo.getY(), circulo.getDiametro()));
+            try {
+                int x= Integer.parseInt(xTxtBox.getText());
+                int y= Integer.parseInt(yTxtBox.getText());
+                int diametro= Integer.parseInt(DiamTxtBox.getText());
+                int radio= diametro/2;
+                circulo= new CirculoMovible(x, y,1 , 1, radio);
+                 figuraActiva= figuraActiva.CIRCULO;
+                eFigura.setIcon(crearIconoCiruculo(circulo.getX(), circulo.getY(), circulo.getDiametro()));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(FormasGUI.this, "Ingrese valores numericos validos");
+            }
+            
         }
     }
 
     private class OyenteRectangulo implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent event){
-            figuraActiva= figuraActiva.RECTANGULO;
-            eFigura.setIcon(crearIconoRectangulo(rectangulo.getX(), rectangulo.getY(), 
+            try {
+                int x= Integer.parseInt(xTxtBox.getText());
+                int y= Integer.parseInt(yTxtBox.getText());
+                int x2= Integer.parseInt(x2TxtBox.getText());
+                int y2= Integer.parseInt(y2TxtBox.getText());
+                rectangulo= new RectanguloMovible(x, y, x2, y2, 1, 1);
+                figuraActiva= figuraActiva.RECTANGULO;
+                eFigura.setIcon(crearIconoRectangulo(rectangulo.getX(), rectangulo.getY(), 
                 rectangulo.getAncho(), rectangulo.getAlto()));
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(FormasGUI.this, "Ingrese valores numericos validos");
+            }
+            
         }
     }
     private class EventoMoverArriba implements  ActionListener{
