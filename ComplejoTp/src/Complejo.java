@@ -11,6 +11,10 @@ public class Complejo {
         real= c1.real - c2.real;
         imaginario= c1.imaginario - c2.imaginario;
     }
+    public void multiplicar(Complejo c1,Complejo c2){
+        real= (c1.real*c2.real)-(c1.imaginario*c2.imaginario);
+        imaginario= (c1.real*c2.imaginario)+(c1.imaginario*c2.real);
+    }
 
 
     @Override
