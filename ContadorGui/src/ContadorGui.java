@@ -1,23 +1,23 @@
 
-import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class ContadorGui extends JFrame {
     private Integer cont;
-    private JLabel etiquetaNumero;
+    private JTextField txtNum;
     private JButton btnMas,btnMenos;
-    private JPanel panelbotones;
+    private JPanel panelbotones,panelContador;
 
     public ContadorGui(){
         setSize(200,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         cont=0;
-        setLayout(new BorderLayout());
-        etiquetaNumero= new JLabel(String.valueOf(cont));
-        getContentPane().add(etiquetaNumero,BorderLayout.CENTER);
+        setLayout(new GridLayout(2,1));
+        armarPanelContador();
         armarPanelBtns();
-        getContentPane().add(panelbotones,BorderLayout.SOUTH);
+        getContentPane().add(panelContador);
+        getContentPane().add(panelbotones);
     }
     private void armarPanelBtns(){
         btnMas= new JButton("+");
@@ -29,16 +29,23 @@ public class ContadorGui extends JFrame {
         panelbotones.add(btnMas);
         panelbotones.add(btnMenos);
     }
+    private void armarPanelContador(){
+        panelContador= new JPanel();
+        txtNum= new JTextField(2);
+        txtNum.setText(String.valueOf(cont));
+        txtNum.disable();
+        panelContador.add(txtNum);
+    }
     private class Oyente implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent evento){
             String valor=(String)evento.getActionCommand();
             if(valor.equals("+")){
                 cont++;
-                etiquetaNumero.setText(String.valueOf(cont));
+                txtNum.setText(String.valueOf(cont));
             }else if(valor.equals("-")){
                 cont--;
-                etiquetaNumero.setText(String.valueOf(cont));
+                txtNum.setText(String.valueOf(cont));
             }
         }
     }
