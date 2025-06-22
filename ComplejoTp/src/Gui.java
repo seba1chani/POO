@@ -4,9 +4,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Gui extends JFrame {
-    private JPanel panelEti,panelTxt,panelBtn,panelCentral;
+    private JPanel panelBtn,panelCentral;
     private JButton btnSumar,btnRestar,btnMultiplicar;
-    private JLabel eNumCom1,eNumCom2,eNumResp,eImg;
+    private JLabel eNumCom1,eNumCom2,eNumResp;
     private JTextField realC1,realC2,imagC1,imagC2,resultado;
 
     public Gui(){
@@ -76,9 +76,11 @@ public class Gui extends JFrame {
             int i1= Integer.parseInt(imagC1.getText());
             int r2= Integer.parseInt(realC2.getText());
             int i2= Integer.parseInt(imagC2.getText());
-            int r3=r1+r2;
-            int i3= i1+i2;
-            resultado.setText(r3+"+"+i3+"i");
+            Complejo c1= new Complejo(r1, i1);
+            Complejo c2= new Complejo(r2, i2);
+            Complejo resultadoc= new Complejo(0, 0);
+            resultadoc.suma(c1, c2);
+            resultado.setText(resultadoc.toString());
         }
     }
 }
